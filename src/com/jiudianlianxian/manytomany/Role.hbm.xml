@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.jiudianlianxian.manytomany.Role" table="t_role">
+		<id name="role_id" column="role_id">
+			<generator class="native"></generator>
+		</id>
+		<property name="role_name" column="role_name"></property>
+		<property name="role_memo" column="role_memo"></property>
+		<!-- name属性：用户set集合名 -->
+		<!-- table属性：第三张表名 -->
+		<set name="setUser" table="user_role">
+			<!-- key标签里面的配置 -->
+			<!-- column属性：配置当前映射文件在第三张表的外键名称 -->
+			<key column="roleid"></key>
+			<!-- class属性：用户实体类全路径 -->
+			<!-- column属性：用户在第三张表的外键名称 -->
+			<many-to-many class="com.jiudianlianxian.manytomany.User" column="userid"></many-to-many>
+		</set>
+	</class>
+</hibernate-mapping>
